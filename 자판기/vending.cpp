@@ -154,8 +154,12 @@ void JuiceList(JUICE* juice, int money) {
 
 
 int Remaining_amount(JUICE* juice, int number, int money) {
-
-	return money - juice[number].price;
+	if (juice[number].count > 0) {
+		return money - juice[number].price;
+	}
+	else {
+		return money;
+	}
 }
 
 void Print_Juice(JUICE* juice, int number)
