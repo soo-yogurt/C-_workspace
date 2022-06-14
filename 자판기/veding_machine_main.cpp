@@ -126,3 +126,9 @@ int Check_count(JUICE* juice)
 void Count_Juice(JUICE* juice, int number) {
 	juice[number].count -= 1;
 }
+
+
+// 처음에는 malloc과 scanf를 이용해서 사용자가 음료의 종류를 자유롭게 정할수 있게
+// 하려 했지만 과제인 자판기와 의미가 맞지 않는다고 생각한다.
+// 따라서 기존 음료수 자리에 다른 음료수와 교채하거나 음료수를 다 마실경우 채워 넣을 수
+// 있게 고민해보겠다.
