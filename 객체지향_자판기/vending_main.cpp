@@ -1,37 +1,33 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include <iostream>
-#include <string.h>
 #include <stdio.h>
 #include "vending_main.h"
+#include "VendingMachine.h"
 
 #define DRINK_NUM 4
 
-
+using VendingMahing1::VendingMachine;
 
 int main(void) {
 
-	//char *jucieName1 = new char[10];
-	//strcpy(jucieName1, "코카콜라");
-	//char *juc
+	int moneyInVendingMachine = 10000;;
 
-	
-	DRINK *drink[DRINK_NUM];
-	for (int i = 0; i < DRINK_NUM; i++) 
-		drink[i] = new DRINK;
-	
-	memset(drink, 0, sizeof(drink));
+	DRINK * carbonatedDrink = new DRINK[DRINK_NUM];
+	DRINK * jucie = new DRINK[DRINK_NUM];
+	memset(carbonatedDrink, 0, sizeof(jucie) * 4);
+	memset(jucie, 0, sizeof(jucie)*4);
+	AddDrink(carbonatedDrink, jucie);
 
-	
+	VendingMachine CarbonatedDrink;
+	VendingMachine JucieVending;
 
-
-
-	AddDrink(drink[0], drink[1], drink[2], drink[3]);
+	CarbonatedDrink.InitMembers(const carbonatedDrink, moneyInVendingMachine);
+	JucieVending.InitMembers(const jucie, moneyInVendingMachine);
 
 
-	cout << sizeof(drink);
 
-	for (int i = 0; i < DRINK_NUM; i++)
-		delete[] drink[i];
+
+	delete[]carbonatedDrink;
+	delete[]jucie;
 
 
 	return 0;

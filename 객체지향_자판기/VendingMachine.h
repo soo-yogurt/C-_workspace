@@ -1,6 +1,7 @@
 #pragma once
 
 
+
 namespace VendingMahing1 {
 	enum {
 		NUM_MAX = 4,
@@ -9,11 +10,11 @@ namespace VendingMahing1 {
 
 	class VendingMachine
 	{
-	/*	DRINK drink[NUM_MAX];*/
+		DRINK drink[NUM_MAX];
 		int money;
 
 	public:
-		void InitMembers();
+		void InitMembers(const DRINK* dri, int money);
 	};
 
 	typedef struct
