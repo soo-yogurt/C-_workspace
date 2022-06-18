@@ -83,3 +83,20 @@ void VendingMachine::PrintPushDrink(const int num) {
 	else if (drink[num].numOfdrink < 0)
 		cout << " 더 이상 음료가 없습니다.\n";
 }
+
+bool VendingMachine::CheckingAccounts()
+{
+	bool check
+
+	for (int i = 0; i < NUM_MAX; i++)
+	{
+		if (drink[i].price > money)
+		{
+			check = false;
+			break;
+		}
+		else
+			check = true;
+	}
+	return check;
+}

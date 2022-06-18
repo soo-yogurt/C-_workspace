@@ -31,6 +31,7 @@ namespace VendingMahing1 {
 		void PushDrink(const int num);
 		void PrintDrinkList();
 		void PrintPushDrink(const int num);
+		bool CheckingAccounts();
 	};
 
 
