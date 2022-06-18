@@ -8,33 +8,16 @@
 
 #define DRINK_NUM 4
 
-//using VendingMahing1::VendingMachine;
 
 int main(void) {
-
 	int MachineNumber;
-
+	uint8_t flag = 0;
 	DRINK * carbonatedDrink = new DRINK[DRINK_NUM];
 	DRINK * jucie = new DRINK[DRINK_NUM];
 	memset(carbonatedDrink, 0, sizeof(jucie) * 4);
 	memset(jucie, 0, sizeof(jucie)*4);
 	DrinkBox(carbonatedDrink, jucie);
-
-	/*VendingMahing1::VendingMachine CarbonatedDrink;
-	VendingMahing1::VendingMachine JucieVending;
-
-	CarbonatedDrink.AddDrink(carbonatedDrink[0].drinkName, carbonatedDrink[0].price, carbonatedDrink[0].numOfdrink,
-		carbonatedDrink[1].drinkName, carbonatedDrink[1].price, carbonatedDrink[1].numOfdrink,
-		carbonatedDrink[2].drinkName, carbonatedDrink[2].price, carbonatedDrink[2].numOfdrink,
-		carbonatedDrink[3].drinkName, carbonatedDrink[3].price, carbonatedDrink[3].numOfdrink);
-	JucieVending.AddDrink(jucie[0].drinkName, jucie[0].price, jucie[0].numOfdrink,
-		jucie[1].drinkName, jucie[1].price, jucie[1].numOfdrink,
-		jucie[2].drinkName, jucie[2].price, jucie[2].numOfdrink,
-		jucie[3].drinkName, jucie[3].price, jucie[3].numOfdrink);*/
-
-
 	VendingMahing1::VendingMachine Drink[2];
-
 	Drink[0].AddDrink(carbonatedDrink[0].drinkName, carbonatedDrink[0].price, carbonatedDrink[0].numOfdrink,
 		carbonatedDrink[1].drinkName, carbonatedDrink[1].price, carbonatedDrink[1].numOfdrink,
 		carbonatedDrink[2].drinkName, carbonatedDrink[2].price, carbonatedDrink[2].numOfdrink,
@@ -43,17 +26,10 @@ int main(void) {
 		jucie[1].drinkName, jucie[1].price, jucie[1].numOfdrink,
 		jucie[2].drinkName, jucie[2].price, jucie[2].numOfdrink,
 		jucie[3].drinkName, jucie[3].price, jucie[3].numOfdrink);
-
-
 	delete[]carbonatedDrink;
 	delete[]jucie;
-
-
-	uint8_t flag = 0;
-
 	while (true)
 	{
-
 		//자판기 선택
 		if(flag == 0) 
 		{
@@ -127,9 +103,7 @@ int main(void) {
 				}
 			}
 		}
-
 	}
-
 	return 0;
 }
 
@@ -191,5 +165,3 @@ void DrinkBox(DRINK* drink, DRINK* jucie) {
 	jucie[2].price = 2000;
 	jucie[3].price = 3000;
 }
-
-//https://kin.naver.com/qna/detail.naver?d1id=1&dirId=1040101&docId=409885683&qb=6rWs7KGw7LK0IOuwsOyXtCDrj5nsoIHtlaDri7k=&enc=utf8&section=kin.ext&rank=3&search_sort=0&spq=0

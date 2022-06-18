@@ -83,11 +83,3 @@ void VendingMachine::PrintPushDrink(const int num) {
 	else if (drink[num].numOfdrink < 0)
 		cout << " 더 이상 음료가 없습니다.\n";
 }
-
-//typedef struct
-//{
-//	char drinkName[NAME_LEN_MAX];
-//	int price;
-//	int numOfdrink;
-//  int buttonNumber;
-//} DRINK;

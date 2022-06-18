@@ -14,7 +14,6 @@ namespace VendingMahing1 {
 		int price;
 		int numOfdrink;
 		int buttonNumber;
-
 	} DRINK;
 
 	class VendingMachine
@@ -30,10 +29,8 @@ namespace VendingMahing1 {
 		void SetMoney(int money);
 		int GetMoney();
 		void PushDrink(const int num);
-
 		void PrintDrinkList();
 		void PrintPushDrink(const int num);
-
 	};
 
 

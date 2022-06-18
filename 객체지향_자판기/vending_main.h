@@ -7,7 +7,6 @@ typedef struct {
 	int price;
 	int numOfdrink;
 }DRINK;
-// carbonated
 
 void DrinkBox(DRINK* drink, DRINK* jucie);
 int Display_ChoiceVendingMachine();
