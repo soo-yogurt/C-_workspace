@@ -26,8 +26,8 @@ namespace VendingMahing1 {
 	public:
 		void AddDrink(char* name1, int price1, int num1, char* name2, int price2, int num2, char* name3,
 			int price3, int num3, char* name4, int price4, int num4);
-
-		void SetMoney(int money=0);
+		void SetMoney();
+		void SetMoney(int money);
 		int GetMoney();
 		void PushDrink(const int num);
 

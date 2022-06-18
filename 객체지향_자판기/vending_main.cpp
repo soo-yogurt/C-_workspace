@@ -89,15 +89,21 @@ int main(void) {
 			Line();
 			cout << "                                                   ";
 			cout << "남은 돈 : " << Drink[MachineNumber].GetMoney() << "원" << endl;
-			cout << "\n 음료수를 선택해주세요 / [5] 돈 더 넣기 / [6] 처음으로 돌아가기\n =====> [ ]\b\b";
+			cout << "\n [0] ~ [3] 음료수를 선택해주세요 /\n";
+			cout << " [5] 돈 더 넣기 / [6] 돈 반환하기 / [7] 처음으로 돌아가기\n =====>[ ]\b\b";
 
 			while (flag == 2) {
-
 				cin >> drinkNum;
 				cout << "\n";
 				if (drinkNum == 5)
 					flag = 1;
-				else if (drinkNum == 6) 
+				else if (drinkNum == 6)
+				{
+					Drink[MachineNumber].SetMoney();
+					system("cls");
+					break;
+				}
+				else if (drinkNum == 7) 
 				{
 					flag = 0;
 					Drink[MachineNumber].SetMoney();
@@ -115,9 +121,8 @@ int main(void) {
 					cout << "                                                   ";
 					cout << "남은 돈 : " << Drink[MachineNumber].GetMoney() << "원" << endl;
 					Drink[MachineNumber].PrintPushDrink(drinkNum);
-					Line();
-					Line();
-					cout << "\n 음료수를 선택해주세요 / [5] 돈 더 넣기 / [6] 처음으로 돌아가기\n =====> [ ]\b\b";
+					cout << "\n [0] ~ [3] 음료수를 선택해주세요 /\n";
+					cout << " [5] 돈 더 넣기 / [6] 돈 반환하기 / [7] 처음으로 돌아가기\n =====>[ ]\b\b";
 
 				}
 			}
@@ -136,7 +141,7 @@ void Line()
 
 int Display_ChoiceVendingMachine() {
 	char num;
-	cout << endl;
+	cout << " [자판기 선택]\n";
 	Line();
 	cout << " 자판기를 선택해주세요. [0번] 탄산자판기 [1번] 과일주스자판기" << endl;
 	cout << " 숫자를 입력해주세요 =====> [ ]\b\b";

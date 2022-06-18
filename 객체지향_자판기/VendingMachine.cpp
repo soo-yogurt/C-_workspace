@@ -34,9 +34,14 @@ void VendingMachine::AddDrink(char *name1, int price1, int num1, char *name2, in
 
 void VendingMachine::SetMoney(int money)
 {
-	if (money > 0) {
-		this->money = this->money + money;
+	if (money >= 0) {
+		this->money += money;
 	}
+}
+
+void VendingMachine::SetMoney()
+{
+		this->money = 0;
 }
 
 int VendingMachine::GetMoney() 
@@ -57,7 +62,7 @@ void VendingMachine::PrintDrinkList()
 
 void VendingMachine::PushDrink(const int num)
 {
-	if (this-> money >= drink[num].price || drink[num].numOfdrink >= 1)
+	if (this-> money >= drink[num].price && drink[num].numOfdrink >= 1)
 	{
 		money = money - drink[num].price;
 		drink[num].numOfdrink = drink[num].numOfdrink - 1;
@@ -75,8 +80,8 @@ void VendingMachine::PrintPushDrink(const int num) {
 		//cout << " : 남은" << drink[num].drinkName << "는" << drink[num].numOfdrink << "개";
 		cout << endl;
 	}
-	else if (drink[num].numOfdrink <= 0)
-		cout << " 해당 번호의 음료가 없습니다.\n";
+	else if (drink[num].numOfdrink < 0)
+		cout << " 더 이상 음료가 없습니다.\n";
 }
 
 //typedef struct
