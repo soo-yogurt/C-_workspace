@@ -80,19 +80,20 @@ void VendingMachine::PrintPushDrink(const int num) {
 		//cout << " : 남은" << drink[num].drinkName << "는" << drink[num].numOfdrink << "개";
 		cout << endl;
 	}
-	else if (drink[num].numOfdrink < 0)
+	else if (drink[num].numOfdrink <= 0)
 		cout << " 더 이상 음료가 없습니다.\n";
 }
 
 bool VendingMachine::CheckingAccounts()
 {
-	bool check
+	bool check;
 
-	for (int i = 0; i < NUM_MAX; i++)
+	for(int i = 0; i < NUM_MAX; i++)
 	{
 		if (drink[i].price > money)
 		{
 			check = false;
+			cout << "\n 돈이 부족합니다. 돈이 반환됩니다.\n";
 			break;
 		}
 		else
