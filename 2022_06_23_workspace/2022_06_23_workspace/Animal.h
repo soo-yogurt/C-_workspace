@@ -1,25 +1,30 @@
 #define _CRT_SECURE_NO_WARNINGS
 #pragma once
 #include<iostream>
+#include<string.h>
 
 
 class Animal
 {
+
 private:
 	char* name;
+	char* type;
 	int age;
-
 public:
-	Animal() 
+	Animal()
 	{
 		name = NULL;
+		type = NULL;
 		age = 0;
 	}
-	Animal(const char * name, const int age = 0)
+	Animal(const char* _name, const char* _type, const int age = 0)
 	{
-		int len = strlen(name);
-		this->name = new char[len + 1];
-		strcpy(this->name, name);
+		name = new char[strlen(_name) + 1];
+		strcpy(name, _name);
+
+		type = new char[strlen(_type) + 1];
+		strcpy(type, _type);
 
 		this->age = age;
 	}
@@ -27,46 +32,35 @@ public:
 	virtual ~Animal()
 	{
 		delete[] name;
+		delete[] type;
 	}
 
-	char* GetName();
 	int GetAge();
-	virtual void Sound (){}
-	virtual void Eat() {}
-	virtual char* GetType() 
-	{
-		return 0;
-	}
-	void SetName(char* _name);
-	virtual void Sound3() {}
-	virtual void Sound2() {}
+	char* GetName();
+	char* GetType();
+
+	void SetName(char* _name); // 이름 입력하기
+	void SetType(const char* _type); // 타입 입력가기
+
+	virtual void Eat() {} // 밥먹기
+	virtual void Sound() {} // 소리내기
+	virtual void Sound2() {} // 있다봐
+	virtual void Sound3() {} // 안녕
 };
 
 
 
 class Dog : public Animal
 {
-	char* type;
-public:
-	Dog(const char* name, const int age) : Animal(name, age)
-	{
-		int len = strlen("Dog");
-		type = new char[len + 1];
-		strcpy(type, "Dog");
-	}
-	Dog() : Animal()
-	{
-		int len = strlen("Dog");
-		type = new char[len + 1];
-		strcpy(type, "Dog");
-	}
-	~Dog() {
-		delete[] type;
-	}
 
-	char* GetType();
-	void Sound();
+public:
+	Dog() : Animal() {}
+	Dog(const char* _name, const char* _type, const int age = 0) : Animal(_name, _type, age)
+	{}
+	~Dog() {}
+
 	void Eat();
+	void Sound();
 	void Sound3();
 	void Sound2();
 };
@@ -74,29 +68,16 @@ public:
 
 class Cat : public Animal
 {
-	char* type;
+
+
 public:
-	Cat(const char* name, const int age) : Animal(name, age)
-	{
-		int len = strlen("Cat");
-		type = new char[len + 1];
-		strcpy(type, "Cat");
+	Cat() : Animal() {}
+	Cat(const char* _name, const char* _type, const int age = 0) : Animal(_name, _type, age)
+	{}
+	~Cat() {}
 
-	}
-	Cat() : Animal()
-	{
-		int len = strlen("Cat");
-		type = new char[len + 1];
-		strcpy(type, "Cat");
-	}
-
-	~Cat() {
-		delete[] type;
-	}
-	void Sound3();
-	void Sound2();
-	char* GetType();
-	void Sound();
 	void Eat();
-
+	void Sound();
+	void Sound2();
+	void Sound3();
 };
