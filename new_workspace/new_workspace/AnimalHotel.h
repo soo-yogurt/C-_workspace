@@ -4,8 +4,6 @@
 #include "Animal.h"
 using namespace std;
 
-// 호텔 클레스에서 어떻게 해야 Animal 클래스의 정보를 사용할 수 있을지 잘모르겠습니다.
-
 
 class AnimalHotel
 {

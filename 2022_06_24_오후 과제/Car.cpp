@@ -7,3 +7,17 @@ void Car::SetType(const char* _type)
 	strcpy(type, _type);
 }
 
+void Car::SetCarNumber(const int _carNumber)
+{
+	this->carNumber = _carNumber;
+}
+
+char* Car::GetType()
+{
+	return this->type;
+}
+
+int Car::GetCarNumber()
+{
+	return this->carNumber;
+}
