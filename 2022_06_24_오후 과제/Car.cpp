@@ -9,7 +9,7 @@ void Car::SetType(const char* _type)
 
 void Car::SetCarNumber(const int _carNumber)
 {
-	this->carNumber = _carNumber;
+	carNumber = _carNumber;
 }
 
 char* Car::GetType()
@@ -20,4 +20,17 @@ char* Car::GetType()
 int Car::GetCarNumber()
 {
 	return carNumber;
+}
+
+
+char* Suv::GetType()
+{
+	char* type = (char*)"SUV";
+	return type;
+}
+
+char* Sedan::GetType()
+{
+	char* type = (char*)"Sedan";
+	return type;
 }
