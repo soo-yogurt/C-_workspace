@@ -14,10 +14,10 @@ void Car::SetCarNumber(const int _carNumber)
 
 char* Car::GetType()
 {
-	return this->type;
+	return type;
 }
 
 int Car::GetCarNumber()
 {
-	return this->carNumber;
+	return carNumber;
 }

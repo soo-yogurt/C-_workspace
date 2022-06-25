@@ -6,13 +6,13 @@ constexpr auto SPACE = 8;
 class ParkingTower
 {
 	// 주차 공간... 
-	Car* parkingSpace = new Car[SPACE];
+	Car* parkingSpace = new Car[SPACE] ();
 
 public:
 	ParkingTower()
 	{
 		for (int i = 0; i < 8; i++) {
-			parkingSpace[i].SetCarNumber((int)0);
+			parkingSpace[i].SetCarNumber(0);
 			parkingSpace[i].SetType("NULL");
 		}
 	}

@@ -1,6 +1,7 @@
+#define _CRT_SECURE_NO_WARNINGS
 #pragma once
-#include <cstring>
-#pragma warning(disable:4996)
+#include <string.h>
+//#pragma warning(disable:4996)
 
 class Car
 {
@@ -19,6 +20,7 @@ public:
 		carNumber = _carNumber;
 		type = NULL;
 	}
+
 	Car(const int _carNumber, const char * _type)
 	{
 		carNumber = _carNumber;
@@ -30,7 +32,6 @@ public:
 		delete[] type;
 	}
 
-	
 	void SetCarNumber(const int _carNuber);
 	void SetType(const char* _type);
 	char* GetType();
@@ -49,10 +50,10 @@ public:
 	Suv() : Car() {}
 	Suv(const int _carNumber) : Car(_carNumber)
 	{
-		//SetType((const char*)"SUV");
+		SetType((const char*)"SUV");
 	}
 	Suv(const int _carNumber, const char* _type) : Car(_carNumber, _type)
-	{ }
+	{}
 	~Suv() {}
 	
 };
@@ -65,10 +66,10 @@ public:
 	Saloon() : Car() {}
 	Saloon(const int _carNumber) : Car(_carNumber)
 	{
-		//SetType((const char*)"Saloon");
+		SetType((const char*)"½Â¿ë");
 	}
 	Saloon(const int _carNumber, const char* _type) : Car(_carNumber, _type)
-	{ }
+	{}
 	~Saloon() {}
 
 

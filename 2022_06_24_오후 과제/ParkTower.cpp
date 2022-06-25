@@ -39,12 +39,14 @@ void ParkingTower::Checkin()
 			myCarType = _getch();
 
 			if (myCarType == '1') {				
-				parkingSpace[i] = Suv(myCarNum, "SUV");
+			//	parkingSpace[i] = Suv(myCarNum, (const char*)"SUV");
+				parkingSpace[i] = Suv(myCarNum);
 				PrintSuccessMessage();
 				break;
 			}
 			else if (myCarType == '2') {
-				parkingSpace[i] = Saloon((const int)myCarNum, (const char*)"½Â¿ë");
+				parkingSpace[i] = Saloon(myCarNum);
+			//	parkingSpace[i] = Saloon(myCarNum, (const char*)"½Â¿ë");
 				PrintSuccessMessage();
 				break;
 			}
@@ -98,7 +100,8 @@ void ParkingTower::CheckOut()
 
 	for (i = 0; i < 8; i++)
 	{
-		if (parkingSpace[i].GetCarNumber() == myCarNumber) {
+		
+		if (parkingSpace[i].GetCarNumber() == myCarNumber && myCarNumber != 0) {
 			break;
 		}
 		else if (i == 7)
