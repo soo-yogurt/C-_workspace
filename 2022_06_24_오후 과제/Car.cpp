@@ -25,12 +25,10 @@ int Car::GetCarNumber()
 
 char* Suv::GetType()
 {
-	char* type = (char*)"SUV";
-	return type;
+	return (char*)"SUV";
 }
 
 char* Sedan::GetType()
 {
-	char* type = (char*)"Sedan";
-	return type;
+	return (char*)"Sedan";
 }

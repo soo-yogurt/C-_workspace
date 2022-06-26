@@ -8,6 +8,7 @@ using namespace std;
 
 void ParkingTower::DisplayMenu()
 {
+	PrintOpenMessage();
 	cout << "====================================================\n";
 	cout << endl;
 	cout << "     [1] 입고       [2] 출고       [3] 주차현황" << endl;
@@ -16,8 +17,24 @@ void ParkingTower::DisplayMenu()
 
 }
 
+void ParkingTower::PrintSuccessMessage() {
+	cout << " Succed Parking" << endl;
+}
+void ParkingTower::PrintOpenMessage()
+{
+	cout << " 문이 열립니다." << endl;
+}
+void ParkingTower::PrintClosedMessage()
+{
+	cout << " 문이 닫힙니다." << endl;
+}
+void ParkingTower::PrintNiceDay()
+{
+	cout << " Have a nice day" << endl;
+}
 
 
+//#define TEST1 클래서 생성 종류에 따라 다른 코드를 짜고 이해하기(미완성)
 #ifdef DEBUG
 
 
@@ -124,17 +141,6 @@ void ParkingTower::DisplsyParkingSpace()
 			break;
 	}
 }
-void ParkingTower::PrintSuccessMessage() {
-	cout << " Succed Parking" << endl;
-}
-void ParkingTower::PrintOpenMessage()
-{
-	cout << " 문이 열립니다." << endl;
-}
-void ParkingTower::PrintClosedMessage()
-{
-	cout << " 문이 닫힙니다." << endl;
-}
 
 
 
@@ -223,7 +229,6 @@ void ParkingTower::ParkingCheck()
 	int countSuv = 0;
 	int countSaloon = 0;
 
-
 	for (i = 0; i < 8; i++)
 	{
 		p1 = strstr(parkingSpace[i]->GetType(), (char*)"SUV");
@@ -244,21 +249,23 @@ void ParkingTower::ParkingCheck()
 }
 
 
-
-
 void ParkingTower::DisplsyParkingSpace()
 {
 	char esc;
 
 	ParkingCheck();
 	cout << "=================== [ 4 floor ] ====================\n\n";
-	cout << "              " << parkingSpace[7]->GetType() << "             " << parkingSpace[6]->GetType() << endl;
+	cout << "              " << parkingSpace[7]->GetType() << "(" << parkingSpace[7]->GetCarNumber();
+	cout << ")             " << parkingSpace[6]->GetType() << "(" << parkingSpace[7]->GetCarNumber() << ")" << endl;
 	cout << "\n=================== [ 3 floor ] ====================\n\n";
-	cout << "              " << parkingSpace[5]->GetType() << "             " << parkingSpace[4]->GetType() << endl;
+	cout << "              " << parkingSpace[5]->GetType() << "(" << parkingSpace[5]->GetCarNumber();
+	cout <<	")             " << parkingSpace[4]->GetType() << "(" << parkingSpace[4]->GetCarNumber() << ")" << endl;
 	cout << "\n=================== [ 2 floor ] ====================\n\n";
-	cout << "              " << parkingSpace[3]->GetType() << "             " << parkingSpace[2]->GetType() << endl;
+	cout << "              " << parkingSpace[3]->GetType() << "(" << parkingSpace[3]->GetCarNumber();
+	cout << ")             " << parkingSpace[2]->GetType() << "(" << parkingSpace[2]->GetCarNumber() << ")" << endl;
 	cout << "\n=================== [ 1 floor ] ====================\n\n";
-	cout << "              " << parkingSpace[1]->GetType() << "             " << parkingSpace[0]->GetType() << endl;
+	cout << "              " << parkingSpace[1]->GetType() << "(" << parkingSpace[1]->GetCarNumber();
+	cout << ")             " << parkingSpace[0]->GetType() << "(" << parkingSpace[0]->GetCarNumber() << ")" << endl;
 	cout << "\n====================================================\n";
 	cout << "\n                                               [ESC]\n";
 
@@ -268,19 +275,6 @@ void ParkingTower::DisplsyParkingSpace()
 			break;
 	}
 }
-void ParkingTower::PrintSuccessMessage() {
-	cout << " Succed Parking" << endl;
-}
-void ParkingTower::PrintOpenMessage()
-{
-	cout << " 문이 열립니다." << endl;
-}
-void ParkingTower::PrintClosedMessage()
-{
-	cout << " 문이 닫힙니다." << endl;
-}
-
-
 
 void ParkingTower::CheckOut()
 {
@@ -306,6 +300,7 @@ void ParkingTower::CheckOut()
 		parkingSpace[i]->SetCarNumber((int)0);
 		parkingSpace[i]->SetType((const char*)"NULL");
 		PrintOpenMessage();
+		PrintNiceDay();
 	}
 	if (flag == 1) {
 		cout << " 해당 차량이 없습니다." << endl;

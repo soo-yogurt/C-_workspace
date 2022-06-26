@@ -44,25 +44,33 @@ class ParkingTower
 {
 	// 주차 공간... 
 	Car * parkingSpace[SPACE];
+
 public:
 
 	ParkingTower()
 	{
 		for (int i = 0; i < 8; i++) {
-			parkingSpace[i] = new Car();
+			parkingSpace[i] = new Car(0,"NULL");
 		}
 	}
 	~ParkingTower() {}
 	
+	// 입고 함수
 	void Checkin();
+	// 출고 함수
 	void CheckOut();
+	// 시작화면
 	void DisplayMenu();
+	// 주차 현황 - 지도
 	void DisplsyParkingSpace();
-	void PrintSuccessMessage();
+	// 주차 현황 - 숫자
 	void ParkingCheck();
+
+	// 설명 문구 // std::cout
+	void PrintSuccessMessage();
 	void PrintOpenMessage();
 	void PrintClosedMessage();
-
+	void PrintNiceDay();
 };
 
 
