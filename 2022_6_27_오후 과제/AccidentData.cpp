@@ -21,3 +21,5 @@ int* AccidentData::Getdatas()
 {
 	return datas;
 }
+
+

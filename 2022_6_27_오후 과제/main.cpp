@@ -3,6 +3,7 @@
 #include <fstream> 
 #include <string>
 #include <cstdint>
+#include <windows.h>
 #include "AccidentData.h"
 #include "DataHandler.h"
 
@@ -14,25 +15,27 @@ int main(void)
 	DataHandler handler;
 	while(true) {
 		if (flag == '0') {
-			system("cls");
+			//system("cls");
 			flag = handler.PrintMenu();
 		}
 		if(flag == '1') {
 			handler.DisplayNum_1();
-			handler.ButtonEsc();
+			Sleep(1500);
 			flag = '0';
 		}
 		if (flag == '2') {
 			handler.DisplayNum_2();
-			handler.ButtonEsc();
+			//handler.ButtonEsc();
 			flag = '0';
 		}
 		if (flag == '3') {
 			handler.DisplayNum_3();
-			handler.ButtonEsc();
+			//handler.ButtonEsc();
 			flag = '0';
 		}
 	}
+
+	
 
 	return 0;
 

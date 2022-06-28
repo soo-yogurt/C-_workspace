@@ -13,11 +13,12 @@ public:
 	// 시작 화면
 	char PrintMenu();
 	// 반복문을 실행한다. ESC를 눌려주면 반복문이 끝난다.
-	void ButtonEsc();
 	// 출력된 데이터에 위치에 맞다 어떤 값을 뜻하는지 알려준다.
 	void PrintListBar();
 	// 매개변수의 값에 해당되는 위치의 데이터 한줄을 출력한다.
 	void PrintDataSingleLine(int line);
+	void Menu1_SaveData(string local);
+	void Menu2_SaveData(int* sum);
 	void DisplayNum_1();
 	void DisplayNum_2();
 	void DisplayNum_3();
