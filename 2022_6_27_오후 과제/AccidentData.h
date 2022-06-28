@@ -11,6 +11,6 @@ public:
 	AccidentData(string sido, string sigungu, int _data[11]);
 	string Getsido();
 	string Getsigungu();
-	int* Getdatas();
+	int* Getdatas(); // 배열을 반환하기 위해서 포인트형 인트를 사용하였다.
 };
 
