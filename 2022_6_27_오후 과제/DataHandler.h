@@ -15,8 +15,8 @@ public:
 	void DisplayNum_3();
 	~DataHandler()
 	{
-		for(int i = 0 ; i < DATALIST; i++)
-			delete[i] myDatas;
+		for(int i = 0; i < DATALIST; i++)
+			delete myDatas[i];
 	}
 };
 

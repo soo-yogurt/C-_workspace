@@ -14,6 +14,7 @@ int main(void)
 	DataHandler handler;
 	while(true) {
 		if (flag == '0') {
+			system("cls");
 			flag = handler.PrintMenu();
 		}
 		if(flag == '1') {
@@ -32,8 +33,6 @@ int main(void)
 			flag = '0';
 		}
 	}
-
-
 
 	return 0;
 

@@ -49,9 +49,9 @@ DataHandler::DataHandler() {
 char DataHandler::PrintMenu()
 {
 	char button;
-	std::cout << " [1] : 시도별 사고 현황보기" << std::endl;
-	std::cout << " [2] : 시군구 별 사고 현황보기" << std::endl;
-	std::cout << " [3] : 검색하기 " << std::endl;
+	std::cout << " [1] : 지역별 사고 현황보기" << std::endl;
+	std::cout << " [2] : 전체 지역별 사고 현황 합계" << std::endl;
+	std::cout << " [3] : 전체 사고 현황보기" << std::endl;
 	while (true) {
 		button = _getch();
 		if(button == '1' || button == '2' || button == '3')
@@ -59,44 +59,94 @@ char DataHandler::PrintMenu()
 	}
 }
 
-
 void DataHandler::PrintListBar()
 {
+	std::cout << endl;
 	std::cout << "[시도]  [시군구]  [터널안]  [교량위]  [고가도로위]  [하차도]  [기타단일로]";
 	std::cout << "[교차로내]  [차로횡단보도]  [교차로부근]  [철길건널목]  [기타]  [불명]" << std::endl;
 }
-// 시도별 현황
+// 지역별
 void DataHandler::DisplayNum_1()
 {
-	DataHandler:PrintListBar();
-}
-// 시구군별 현황
-void DataHandler::DisplayNum_2() 
-{
-	DataHandler:PrintListBar();
-}
-// 검색하기
-void DataHandler::DisplayNum_3()
-{
 	string data;
-	char esc;
-	DataHandler:PrintListBar();
-	std::cout << "지역을 검색해주세요 : ";
+	std::cout << " 지역으로 검색해주세요 : ";
 	std::cin >> data;
 	for (int i = 0; i < DATALIST; i++)
 	{
-		if (myDatas[i]->Getsigungu() == "중구")
-			cout << myDatas[i]->Getdatas()[i] << "  ";
-		if (myDatas[i]->Getsido() == (string)data)
-			cout << myDatas[i]->Getdatas()[1] << "  ";
+		if (myDatas[i]->Getsido() == data || myDatas[i]->Getsigungu() == data) {
+			cout << " " << myDatas[i]->Getsido() << "\t ";
+			cout << myDatas[i]->Getsigungu();
+			if (myDatas[i]->Getsigungu().size() < 5)
+				cout << "  \t\t";
+			else if (myDatas[i]->Getsigungu().size() < 7)
+				cout << "\t\t";
+			else
+				cout << "\t";
+			for (int j = 0; j < 11; j++)
+				printf("%3d", myDatas[i]->Getdatas()[j]);
+			cout << "  ";
+			cout << endl;
+		}
 	}
+	DataHandler::PrintListBar();
+}
 
+void DataHandler::DisplayNum_2() 
+{
+	int sum[50];
+	int k = 0; 
+	string sido;
 
+	for (int i = 0; i < 50; i++)
+		sum[i] = 0;
+	sido = myDatas[0]->Getsido();
+	cout << " " << myDatas[0]->Getsido() << "\t ";
+	for (int i = 0; i < DATALIST; i++)
+	{
+		if (myDatas[i]->Getsido() == sido) {
+			for (int j = 0; j < 11; j++) {
+				sum[k] += myDatas[i]->Getdatas()[j];
+			}
+		}
+		else {
+			cout << sum[k];
+			k++;
+			cout << endl;
+			sido = myDatas[i]->Getsido();
+			cout << " " << myDatas[i]->Getsido() << "\t ";
+		}	
+		if (i + 1 == DATALIST)
+		{
+			cout << sum[k];
+		}
+	}
+	DataHandler::PrintListBar();
+}
+
+void DataHandler::DisplayNum_3()
+{
+	for (int i = 0; i < DATALIST; i++)
+	{
+		cout << " " << myDatas[i]->Getsido() << "\t ";
+		cout << myDatas[i]->Getsigungu();
+		if (myDatas[i]->Getsigungu().size() < 5)
+			cout << "  \t\t";
+		else if (myDatas[i]->Getsigungu().size() < 7)
+			cout << "\t\t";
+		else
+			cout << "\t";
+		for (int j = 0; j < 11; j++)
+			printf("%3d", myDatas[i]->Getdatas()[j]);
+		cout << "  ";
+		cout << endl;
+	}
+	DataHandler::PrintListBar();
 }
 
 void DataHandler::ButtonEsc()
 {
 	char esc;
+	cout << "\n [ESC]\n";
 	while (true)
 	{
 		esc = _getch();
