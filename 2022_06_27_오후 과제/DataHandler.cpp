@@ -213,11 +213,13 @@ void DataHandler::Menu2_SaveData(int *sum)
 	Savefile << ", ";
 	for (int i = 0; i < myDatas.size(); i++) {
 		if (sido == myDatas[i]->Getsido()) {}
+
 		else {
 			Savefile << sum[k];
 			k++;
 			Savefile << endl;
 			Savefile << myDatas[i]->Getsido();
+			sido = myDatas[i]->Getsido();
 			Savefile << ", ";
 		}
 		if ((i + 1) == myDatas.size()) {
@@ -225,6 +227,7 @@ void DataHandler::Menu2_SaveData(int *sum)
 			Savefile << endl;
 		}
 	}
+	std::cout << " 저장 완료" << endl;
 	Savefile.close();
 }
 
@@ -238,8 +241,29 @@ void DataHandler::DisplayNum_3()
 		PrintDataSingleLine(i);
 	}
 	DataHandler::PrintListBar();
+
+	cout << " 나가기 : [ESC]\t\t 저장하기 : [ENTER]" << endl;
+	while (true)
+	{
+		char ki;
+		ki = _getch();
+		if (ki == 27)
+			break;
+		else if (ki == 13) {
+			Menu3_SaveData();
+			break;
+		}
+	}
 }
 
+void DataHandler::Menu3_SaveData()
+{
+
+
+
+
+	std::cout << " 저장 완료" << endl;
+}
 //void DataHandler::ButtonEscOrSaveDave(int menuNum)
 //{
 //	char ki;

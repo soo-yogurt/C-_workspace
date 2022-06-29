@@ -19,6 +19,7 @@ public:
 	void PrintDataSingleLine(int line);
 	void Menu1_SaveData(string local);
 	void Menu2_SaveData(int* sum);
+	void Menu3_SaveData();
 	void DisplayNum_1();
 	void DisplayNum_2();
 	void DisplayNum_3();
