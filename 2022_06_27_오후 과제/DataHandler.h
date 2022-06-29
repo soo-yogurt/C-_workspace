@@ -12,17 +12,19 @@ public:
 	DataHandler();
 	// 시작 화면
 	char PrintMenu();
-	// 반복문을 실행한다. ESC를 눌려주면 반복문이 끝난다.
 	// 출력된 데이터에 위치에 맞다 어떤 값을 뜻하는지 알려준다.
 	void PrintListBar();
-	// 매개변수의 값에 해당되는 위치의 데이터 한줄을 출력한다.
+	// 해당되는 위치의 데이터 한줄을 출력한다.
 	void PrintDataSingleLine(int line);
-	void Menu1_SaveData(string local);
-	void Menu2_SaveData(int* sum);
-	void Menu3_SaveData();
 	void DisplayNum_1();
 	void DisplayNum_2();
 	void DisplayNum_3();
+
+	// 아래의 3개 함수를 Display 함수와 함께 사용해야한다.
+	// private 에 넣어야하는가 ?
+	void Menu1_SaveData(string local);
+	void Menu2_SaveData(int* sum);
+	void Menu3_SaveData();
 
 	~DataHandler()
 	{
@@ -32,7 +34,6 @@ public:
 			delete myDatas[i];*/
 		for (int i = 0; i < myDatas.size(); i++)
 			delete myDatas[i];
-
 	}
 	
 };

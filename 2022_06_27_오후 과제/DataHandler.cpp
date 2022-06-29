@@ -84,26 +84,6 @@ void  DataHandler::PrintDataSingleLine(int line)
 }
 
 
-
-
-//void DataHandler::ButtonEscOrSaveDave(string local) {
-//	char ki;
-//	cout << " 나가기 : [ESC]\t\t 저장하기 : [ENTER]" << endl;
-//	while (true)
-//	{
-//		ki = _getch();
-//		if (ki == 27)
-//			break;
-//		else if (ki == 13) {
-//
-//			SaveDataSingleLine(local);
-//		}
-//		cout << "저장 완료" << endl;
-//		break;
-//		
-//	}
-//}
-
 // 지역별
 void DataHandler::DisplayNum_1()
 {
@@ -258,38 +238,19 @@ void DataHandler::DisplayNum_3()
 
 void DataHandler::Menu3_SaveData()
 {
-
-
-
-
+	string fileName;
+	std::cout << " 파일명을 입력하세요 : ";
+	cin >> fileName;
+	ofstream Savefile(fileName + ".csv");
+	for (int i = 0; i < myDatas.size(); i++)
+	{
+		Savefile << myDatas[i]->Getsido() + ", " + myDatas[i]->Getsigungu() + ", ";
+		for (int j = 0; j < 11; j++) {
+			Savefile << myDatas[i]->Getdatas()[j];
+			Savefile << ", ";
+		}
+		Savefile << "\n";
+	}
+	Savefile.close();
 	std::cout << " 저장 완료" << endl;
 }
-//void DataHandler::ButtonEscOrSaveDave(int menuNum)
-//{
-//	char ki;
-//	vector<string> Data;
-//	cout << "\n [ESC]\n";
-//	while (true)
-//	{
-//		ki = _getch();
-//		if (ki == 27)
-//			break;
-//		else if (ki == 13) {
-//			ofstream SaveData("newDatas");
-//			if (menuNum == 1) {
-//			
-//			}
-//
-//			else if (menuNum == 3)
-//			{
-//
-//			}
-//
-//
-//
-//
-//			break;
-//		}
-//		
-//	}
-//}
