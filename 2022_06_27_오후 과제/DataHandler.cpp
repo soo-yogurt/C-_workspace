@@ -137,31 +137,37 @@ void DataHandler::Menu1_SaveData(string local)
 
 void DataHandler::DisplayNum_2() 
 {
-	int sum[50]; // 이 부분 백터로 바꿀 수 없을까 ?
+	//int sum[50]; // 이 부분 백터로 바꿀 수 없을까 ?
+	vector<int> sum;
 	int k = 0; 
 	string sido;
 
-	for (int i = 0; i < 50; i++)
-		sum[i] = 0;
+	/*for (int i = 0; i < 50; i++)
+		sum[i] = 0;*/
+	sum.push_back(0);
 	sido = myDatas[0]->Getsido();
 	cout << " " << myDatas[0]->Getsido() << "\t ";
 	for (int i = 0; i < myDatas.size(); i++)
 	{
 		if (myDatas[i]->Getsido() == sido) {
 			for (int j = 0; j < 11; j++) {
-				sum[k] += myDatas[i]->Getdatas()[j];
+				//sum[k] += myDatas[i]->Getdatas()[j];
+				sum.at(k) += myDatas[i]->Getdatas()[j];
 			}
 		}
 		else {
-			cout << sum[k];
+			//cout << sum[k];
+			cout << sum.at(k);
 			k++;
+			sum.push_back(0);
 			cout << endl;
 			sido = myDatas[i]->Getsido();
 			cout << " " << myDatas[i]->Getsido() << "\t ";
 		}	
 		if (i + 1 == myDatas.size())
 		{
-			cout << sum[k];
+			//cout << sum[k];
+			cout << sum.at(k);
 			cout << endl;
 		}
 	}
@@ -174,13 +180,13 @@ void DataHandler::DisplayNum_2()
 		if (ki == 27)
 			break;
 		else if (ki == 13) {
-			Menu2_SaveData(&sum[0]);
+			Menu2_SaveData(&sum);
 			break;
 		}
 	}
 }
 
-void DataHandler::Menu2_SaveData(int *sum)
+void DataHandler::Menu2_SaveData(vector<int> *sum)
 {
 	string fileName;
 	std::cout << " 파일명을 입력하세요 : ";
@@ -195,7 +201,7 @@ void DataHandler::Menu2_SaveData(int *sum)
 		if (sido == myDatas[i]->Getsido()) {}
 
 		else {
-			Savefile << sum[k];
+			Savefile << sum->at(k);
 			k++;
 			Savefile << endl;
 			Savefile << myDatas[i]->Getsido();
@@ -203,7 +209,8 @@ void DataHandler::Menu2_SaveData(int *sum)
 			Savefile << ", ";
 		}
 		if ((i + 1) == myDatas.size()) {
-			Savefile << sum[k];
+			//Savefile << sum[k];
+			Savefile << sum->at(k);
 			Savefile << endl;
 		}
 	}

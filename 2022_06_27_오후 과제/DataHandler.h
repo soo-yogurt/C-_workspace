@@ -23,7 +23,7 @@ public:
 	// 아래의 3개 함수를 Display 함수와 함께 사용해야한다.
 	// private 에 넣어야하는가 ?
 	void Menu1_SaveData(string local);
-	void Menu2_SaveData(int* sum);
+	void Menu2_SaveData(vector<int> *sum);
 	void Menu3_SaveData();
 
 	~DataHandler()
