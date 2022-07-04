@@ -19,7 +19,7 @@ string AccidentData::GetSigungu()
 {
 	return sigungu;
 }
-int* AccidentData::GetDatas(int i)
+int AccidentData::GetDatas(int i)
 {
-	return &data[i];
+	return data[i];
 }

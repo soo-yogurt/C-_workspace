@@ -1,11 +1,11 @@
 ﻿
-// MFCApplication10Dlg.cpp: 구현 파일
+// MFCApplication2Dlg.cpp: 구현 파일
 //
 
 #include "pch.h"
 #include "framework.h"
-#include "MFCApplication10.h"
-#include "MFCApplication10Dlg.h"
+#include "MFCApplication2.h"
+#include "MFCApplication2Dlg.h"
 #include "afxdialogex.h"
 
 #ifdef _DEBUG
@@ -46,33 +46,36 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CMFCApplication10Dlg 대화 상자
+// CMFCApplication2Dlg 대화 상자
+DataHandler handler;
 
 
-
-CMFCApplication10Dlg::CMFCApplication10Dlg(CWnd* pParent /*=nullptr*/)
-	: CDialogEx(IDD_MFCAPPLICATION10_DIALOG, pParent)
+CMFCApplication2Dlg::CMFCApplication2Dlg(CWnd* pParent /*=nullptr*/)
+	: CDialogEx(IDD_MFCAPPLICATION2_DIALOG, pParent)
+	, m_search(_T(""))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
 
-void CMFCApplication10Dlg::DoDataExchange(CDataExchange* pDX)
+void CMFCApplication2Dlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_LIST1, m_list);
+	DDX_Text(pDX, IDC_EDIT2, m_search);
 }
 
-BEGIN_MESSAGE_MAP(CMFCApplication10Dlg, CDialogEx)
+BEGIN_MESSAGE_MAP(CMFCApplication2Dlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-	ON_BN_CLICKED(IDC_BUTTON1, &CMFCApplication10Dlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_BUTTON1, &CMFCApplication2Dlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_BUTTON3, &CMFCApplication2Dlg::OnBnClickedButton3)
 END_MESSAGE_MAP()
 
 
-// CMFCApplication10Dlg 메시지 처리기
+// CMFCApplication2Dlg 메시지 처리기
 
-BOOL CMFCApplication10Dlg::OnInitDialog()
+BOOL CMFCApplication2Dlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
@@ -106,7 +109,7 @@ BOOL CMFCApplication10Dlg::OnInitDialog()
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
 }
 
-void CMFCApplication10Dlg::OnSysCommand(UINT nID, LPARAM lParam)
+void CMFCApplication2Dlg::OnSysCommand(UINT nID, LPARAM lParam)
 {
 	if ((nID & 0xFFF0) == IDM_ABOUTBOX)
 	{
@@ -123,7 +126,7 @@ void CMFCApplication10Dlg::OnSysCommand(UINT nID, LPARAM lParam)
 //  아래 코드가 필요합니다.  문서/뷰 모델을 사용하는 MFC 애플리케이션의 경우에는
 //  프레임워크에서 이 작업을 자동으로 수행합니다.
 
-void CMFCApplication10Dlg::OnPaint()
+void CMFCApplication2Dlg::OnPaint()
 {
 	if (IsIconic())
 	{
@@ -150,16 +153,18 @@ void CMFCApplication10Dlg::OnPaint()
 
 // 사용자가 최소화된 창을 끄는 동안에 커서가 표시되도록 시스템에서
 //  이 함수를 호출합니다.
-HCURSOR CMFCApplication10Dlg::OnQueryDragIcon()
+HCURSOR CMFCApplication2Dlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
 
 
-void CMFCApplication10Dlg::OnBnClickedButton1()
+void CMFCApplication2Dlg::OnBnClickedButton1()
 {
-	DataHandler handler;
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+
+	
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	m_list.SetExtendedStyle(LVS_EX_GRIDLINES | LVS_EX_FULLROWSELECT);
 	m_list.InsertColumn(0, _T("시도"), LVCFMT_CENTER, 50);
@@ -175,46 +180,72 @@ void CMFCApplication10Dlg::OnBnClickedButton1()
 	m_list.InsertColumn(10, _T("철긴건널목"), LVCFMT_CENTER, 100);
 	m_list.InsertColumn(11, _T("기타"), LVCFMT_CENTER, 50);
 	m_list.InsertColumn(12, _T("불명"), LVCFMT_CENTER, 50);
-	int i = 1;
-	CString cstr(handler.GetSido(i).c_str());
-	/*CString cstr2(handler.GetSigungu(i).c_str());*/
-	//m_list.InsertItem(i, _T("handler.GetSido(i).c_str()"));
-	/*m_list.SetItem(i, 1, LVIF_TEXT, _T("cstr2"), NULL, NULL, NULL, NULL);*/
-	/*for (int i = 0; i < handler.GetDataSize(); i++) {
-		m_list.InsertItem(i, _T("%s",handler.GetSido(i)));
-		m_list.SetItem(i, 1, LVIF_TEXT, _T("%s",handler.GetSigungu(i)), NULL, NULL, NULL, NULL);
-		for (int j = 0; j < 11; j++) {
-			m_list.SetItem(0, 2 + j, LVIF_TEXT, _T("%d",handler.GetDatas(i,j)), NULL, NULL, NULL, NULL);
-		}
-	}*/
-
-
-
 	
-	//for (int i = 0; i < handler.GetDataSize(); i++) {
-	//	cout << " " << myDatas[line]->GetSido() << "\t ";
-	//	cout << myDatas[line]->GetSigungu();
+	CString cstr;
 
-	//	for (int j = 0; j < 11; j++)
-	//	{
-	//		handler.GetDatas(i, j);
-	//	}
-	//}
+	for (int i = 0; i < handler.GetDataSize(); i++) {
+		cstr = handler.GetSido(i).c_str();
+		m_list.InsertItem(i, cstr);
+		cstr = handler.GetSigungu(i).c_str();
+		m_list.SetItem(i, 1, LVIF_TEXT, cstr, NULL, NULL, NULL, NULL);
+		for (int j = 0; j < 11; j++) {
+			cstr.Format(_T("%d"), handler.GetDatas(i, j));
+			m_list.SetItem(i, 2 + j, LVIF_TEXT, cstr, NULL, NULL, NULL, NULL);
+		}
+	}
 
-	//void  DataHandler::PrintDataSingleLine(int line)
-	//{
-	//	
-	//	if (myDatas[line]->GetSigungu().size() < 5)
-	//		cout << "  \t\t";
-	//	else if (myDatas[line]->GetSigungu().size() < 7)
-	//		cout << "\t\t";
-	//	else
-	//		cout << "\t";
-	//	// 배열을 반환 받았기 때문에 해당 값을 읽으면 주소가 나온다. 내용을 보기위해서는 배열을 한자리씩 출력해야한다.
-	//	for (int j = 0; j < 11; j++)
-	//		printf("%3d", myDatas[line]->GetDatas()[j]);
-	//	cout << "  ";
-	//	cout << endl;
-	//}
 
+
+}
+
+
+void CMFCApplication2Dlg::OnBnClickedButton3()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	m_list.SetExtendedStyle(LVS_EX_GRIDLINES | LVS_EX_FULLROWSELECT);
+	m_list.InsertColumn(0, _T("시도"), LVCFMT_CENTER, 50);
+	m_list.InsertColumn(1, _T("시군구"), LVCFMT_CENTER, 70);
+	m_list.InsertColumn(2, _T("터널안"), LVCFMT_CENTER, 70);
+	m_list.InsertColumn(3, _T("교량위"), LVCFMT_CENTER, 70);
+	m_list.InsertColumn(4, _T("고가도로위"), LVCFMT_CENTER, 100);
+	m_list.InsertColumn(5, _T("지하차도(도로)내"), LVCFMT_CENTER, 120);
+	m_list.InsertColumn(6, _T("기타단일로"), LVCFMT_CENTER, 100);
+	m_list.InsertColumn(7, _T("교차로내"), LVCFMT_CENTER, 80);
+	m_list.InsertColumn(8, _T("교차로횡단보도내"), LVCFMT_CENTER, 120);
+	m_list.InsertColumn(9, _T("교차로부근"), LVCFMT_CENTER, 100);
+	m_list.InsertColumn(10, _T("철긴건널목"), LVCFMT_CENTER, 100);
+	m_list.InsertColumn(11, _T("기타"), LVCFMT_CENTER, 50);
+	m_list.InsertColumn(12, _T("불명"), LVCFMT_CENTER, 50);
+	UpdateData(true);
+	//m_search
+	CString cstr;
+	CString cstr2;
+	for (int i = 0; i < handler.GetDataSize(); i++) {
+		int k = 0;
+	
+		cstr = handler.GetSido(i).c_str();
+		if (cstr == m_search) {
+			m_list.InsertItem(k, cstr);
+			cstr = handler.GetSigungu(i).c_str();
+			m_list.SetItem(k, 1, LVIF_TEXT, cstr, NULL, NULL, NULL, NULL);
+			for (int j = 0; j < 11; j++) {
+				cstr.Format(_T("%d"), handler.GetDatas(i, j));
+				m_list.SetItem(k, 2 + j, LVIF_TEXT, cstr, NULL, NULL, NULL, NULL);
+			}
+			k++;
+		}
+		int o = 0;
+		cstr2 = handler.GetSigungu(i).c_str();
+		if (cstr2 == m_search) {
+			cstr2 = handler.GetSido(i).c_str();
+			m_list.InsertItem(o, cstr2);
+			cstr2 = handler.GetSigungu(i).c_str();
+			m_list.SetItem(o, 1, LVIF_TEXT, cstr2, NULL, NULL, NULL, NULL);
+			for (int j = 0; j < 11; j++) {
+				cstr2.Format(_T("%d"), handler.GetDatas(i, j));
+				m_list.SetItem(o, 2 + j, LVIF_TEXT, cstr2, NULL, NULL, NULL, NULL);
+			}
+			o++;
+		}
+	}
 }

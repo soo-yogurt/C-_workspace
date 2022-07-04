@@ -16,7 +16,7 @@ public:
 	//void PrintDataSingleLine(int line);
 	/*void DisplayNum_3();*/
 	int GetDataSize();
-	int* GetDatas(int line, int j);
+	int GetDatas(int line, int j);
 	string GetSido(int line);
 	
 	string GetSigungu(int line);

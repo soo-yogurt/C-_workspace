@@ -57,7 +57,7 @@ string DataHandler::GetSigungu(int line)
 {
 	return myDatas[line]->GetSigungu();
 }
-int* DataHandler::GetDatas(int line, int j)
+int DataHandler::GetDatas(int line, int j)
 {
 	return myDatas[line]->GetDatas(j);
 }

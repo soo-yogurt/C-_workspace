@@ -13,6 +13,6 @@ public:
 	AccidentData(string _sido, string _sogungu, int _data[]);
 	string GetSido();
 	string GetSigungu();
-	int* GetDatas(int i);
+	int GetDatas(int i);
 
 };
