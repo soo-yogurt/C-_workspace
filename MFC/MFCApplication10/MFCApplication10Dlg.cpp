@@ -163,9 +163,8 @@ HCURSOR CMFCApplication2Dlg::OnQueryDragIcon()
 void CMFCApplication2Dlg::OnBnClickedButton1()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	m_list.DeleteAllItems();
 
-	
-	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	m_list.SetExtendedStyle(LVS_EX_GRIDLINES | LVS_EX_FULLROWSELECT);
 	m_list.InsertColumn(0, _T("시도"), LVCFMT_CENTER, 50);
 	m_list.InsertColumn(1, _T("시군구"), LVCFMT_CENTER, 70);
@@ -201,6 +200,7 @@ void CMFCApplication2Dlg::OnBnClickedButton1()
 
 void CMFCApplication2Dlg::OnBnClickedButton3()
 {
+	m_list.DeleteAllItems();
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	m_list.SetExtendedStyle(LVS_EX_GRIDLINES | LVS_EX_FULLROWSELECT);
 	m_list.InsertColumn(0, _T("시도"), LVCFMT_CENTER, 50);
