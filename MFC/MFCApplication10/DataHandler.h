@@ -5,10 +5,10 @@
 
 class DataHandler
 {
-vector<AccidentData* > myDatas;
+	vector<AccidentData* > myDatas;
 
 
-//void Menu3_SaveData();
+	//void Menu3_SaveData();
 
 public:
 	DataHandler();
@@ -18,7 +18,7 @@ public:
 	int GetDataSize();
 	int GetDatas(int line, int j);
 	string GetSido(int line);
-	
+
 	string GetSigungu(int line);
 
 };

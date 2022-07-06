@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "AccidentData.h"
 
-
 AccidentData::AccidentData(string _sido, string _sigungu, int _data[11])
 	:sido(_sido), sigungu(_sigungu)
 {
