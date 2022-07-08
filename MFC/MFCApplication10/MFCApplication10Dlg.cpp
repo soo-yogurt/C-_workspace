@@ -74,6 +74,7 @@ BEGIN_MESSAGE_MAP(CMFCApplication10Dlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_BUTTON1, &CMFCApplication10Dlg::OnBnClickedButton1)
 	ON_BN_CLICKED(IDC_BUTTON2, &CMFCApplication10Dlg::OnBnClickedButton2)
+	ON_MESSAGE(MYMSG, &CMFCApplication10Dlg::OnMymsg)
 END_MESSAGE_MAP()
 
 
@@ -109,6 +110,20 @@ BOOL CMFCApplication10Dlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 작은 아이콘을 설정합니다.
 
 	// TODO: 여기에 추가 초기화 작업을 추가합니다.
+	m_list.SetExtendedStyle(LVS_EX_GRIDLINES | LVS_EX_FULLROWSELECT);
+	m_list.InsertColumn(0, _T("시도"), LVCFMT_CENTER, 50);
+	m_list.InsertColumn(1, _T("시군구"), LVCFMT_CENTER, 70);
+	m_list.InsertColumn(2, _T("터널안"), LVCFMT_CENTER, 70);
+	m_list.InsertColumn(3, _T("교량위"), LVCFMT_CENTER, 70);
+	m_list.InsertColumn(4, _T("고가도로위"), LVCFMT_CENTER, 100);
+	m_list.InsertColumn(5, _T("지하차도(도로)내"), LVCFMT_CENTER, 120);
+	m_list.InsertColumn(6, _T("기타단일로"), LVCFMT_CENTER, 100);
+	m_list.InsertColumn(7, _T("교차로내"), LVCFMT_CENTER, 80);
+	m_list.InsertColumn(8, _T("교차로횡단보도내"), LVCFMT_CENTER, 120);
+	m_list.InsertColumn(9, _T("교차로부근"), LVCFMT_CENTER, 100);
+	m_list.InsertColumn(10, _T("철긴건널목"), LVCFMT_CENTER, 100);
+	m_list.InsertColumn(11, _T("기타"), LVCFMT_CENTER, 50);
+	m_list.InsertColumn(12, _T("불명"), LVCFMT_CENTER, 50);
 
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
 }
@@ -162,6 +177,33 @@ HCURSOR CMFCApplication10Dlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+UINT TestFunction(LPVOID lpData)
+{
+	CMFCApplication10Dlg* target = (CMFCApplication10Dlg*)(lpData);
+	CString cstr;
+
+
+	for (int i = 0; i < handler.GetDataSize(); i++) {
+		cstr = handler.GetSido(i).c_str();
+		//target->dataList.push_back(cstr);
+		target->dataList.push_back(cstr);
+		cstr = handler.GetSigungu(i).c_str();
+		//target->dataList.push_back(cstr);
+		target->dataList.push_back(cstr);
+		for (int j = 0; j < 11; j++) {
+			cstr.Format(_T("%d"), handler.GetDatas(i, j));
+			//target->dataList.push_back(cstr);
+			target->dataList.push_back(cstr);
+		}
+	}
+
+	LPARAM temp = (LPARAM)(target);
+	SendMessage(target->m_hWnd, MYMSG, NULL, temp);
+
+	return 0;
+}
+
+
 
 
 void CMFCApplication10Dlg::OnBnClickedButton1()
@@ -169,33 +211,10 @@ void CMFCApplication10Dlg::OnBnClickedButton1()
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	m_list.DeleteAllItems();
 
-	m_list.SetExtendedStyle(LVS_EX_GRIDLINES | LVS_EX_FULLROWSELECT);
-	m_list.InsertColumn(0, _T("시도"), LVCFMT_CENTER, 50);
-	m_list.InsertColumn(1, _T("시군구"), LVCFMT_CENTER, 70);
-	m_list.InsertColumn(2, _T("터널안"), LVCFMT_CENTER, 70);
-	m_list.InsertColumn(3, _T("교량위"), LVCFMT_CENTER, 70);
-	m_list.InsertColumn(4, _T("고가도로위"), LVCFMT_CENTER, 100);
-	m_list.InsertColumn(5, _T("지하차도(도로)내"), LVCFMT_CENTER, 120);
-	m_list.InsertColumn(6, _T("기타단일로"), LVCFMT_CENTER, 100);
-	m_list.InsertColumn(7, _T("교차로내"), LVCFMT_CENTER, 80);
-	m_list.InsertColumn(8, _T("교차로횡단보도내"), LVCFMT_CENTER, 120);
-	m_list.InsertColumn(9, _T("교차로부근"), LVCFMT_CENTER, 100);
-	m_list.InsertColumn(10, _T("철긴건널목"), LVCFMT_CENTER, 100);
-	m_list.InsertColumn(11, _T("기타"), LVCFMT_CENTER, 50);
-	m_list.InsertColumn(12, _T("불명"), LVCFMT_CENTER, 50);
 
-	CString cstr;
 
-	for (int i = 0; i < handler.GetDataSize(); i++) {
-		cstr = handler.GetSido(i).c_str();
-		m_list.InsertItem(i, cstr);
-		cstr = handler.GetSigungu(i).c_str();
-		m_list.SetItem(i, 1, LVIF_TEXT, cstr, NULL, NULL, NULL, NULL);
-		for (int j = 0; j < 11; j++) {
-			cstr.Format(_T("%d"), handler.GetDatas(i, j));
-			m_list.SetItem(i, 2 + j, LVIF_TEXT, cstr, NULL, NULL, NULL, NULL);
-		}
-	}
+
+	AfxBeginThread(TestFunction, (LPVOID)this);
 }
 
 
@@ -268,4 +287,22 @@ void CMFCApplication10Dlg::SetSumList(vector<int> sum)
 		str.Format(_T("%d"), sum.at(j));
 		m_sumList.SetItem(0, 1 + j, LVIF_TEXT, str, NULL, NULL, NULL, NULL);
 	};
+}
+
+
+afx_msg LRESULT CMFCApplication10Dlg::OnMymsg(WPARAM wParam, LPARAM lParam)
+{
+	int i = 0; 
+	int j = 1;
+
+	for (int k = 0; k < dataList.size() / 13; k++) {
+		m_list.InsertItem(k, dataList.at(i));
+		for (j = 1; j < 13; j++) {
+			i++;
+			m_list.SetItem(k, j, LVIF_TEXT, dataList.at(i), NULL, NULL, NULL, NULL);
+		}
+		i++;
+	}
+
+	return 0;
 }

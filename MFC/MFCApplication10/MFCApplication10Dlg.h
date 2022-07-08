@@ -4,7 +4,7 @@
 
 #pragma once
 #include "DataHandler.h"
-
+#define MYMSG WM_USER + 1
 
 // CMFCApplication10Dlg 대화 상자
 class CMFCApplication10Dlg : public CDialogEx
@@ -39,4 +39,7 @@ public:
 	afx_msg void OnBnClickedButton2();
 	CListCtrl m_sumList;
 	void SetSumList(vector<int> sum);
+	vector<CString>  dataList;
+protected:
+	afx_msg LRESULT OnMymsg(WPARAM wParam, LPARAM lParam);
 };
